@@ -47,58 +47,58 @@ Histogram:
 	mov.w #Scores, R13
 	mov.w #Scores, R14
 	add.w numScores, R14
-	call #max
+	call  #max
 	mov.b R15, Max
 	mov.w #Scores, R13
 	clr.b R15
 	mov.b numScores, R8
 	mov.b #-1, R9
-	call #Sort
+	call  #Sort
 	clr.b R5
 	clr.b R6
 	clr.b R7
 	clr.b R8
 loop:
 	mov.b @R13, R12
-	push R13
-	call #histo
+	push  R13
+	call  #histo
 	mov.b R15, @R7(Histogram)
 	inc.b R7
-	pop R13
+	pop   R13
 	add.w R15, R13
 	clr.b R15
 	cmp.w R14, R13
-	jl loop
+	jl    loop
 
 	mov.w #Histogram, R13
 	mov.w #Histogram, R14
 	add.w numScores, R14
-	call #max
+	call  #max
 	mov.b R15, Mode
-	jmp $
+	jmp   $
 
 max:
 	cmp.w R13, R14
-	jz returnMax
+	jz    returnMax
 	mov.b @R13, R4
 	inc.w R13
 	cmp.b R15, R4
-	jl max
+	jl    max
 	mov.b R4, R15
-	jmp max
+	jmp   max
 returnMax:
 	ret
 
 
 histo:
 	cmp.w R13, R14
-	jz returnHisto
+	jz    returnHisto
 	mov.b @R13, R5
 	inc.w R13
-	cmp R12, R5
-	jne histo
+	cmp   R12, R5
+	jne   histo
 	inc.b R15
-	jmp histo
+	jmp   histo
 returnHisto:
 	ret
 
