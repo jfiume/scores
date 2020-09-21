@@ -91,17 +91,15 @@ returnMax:
 
 
 histo:
-	cmp.b R6, numScores
+	cmp.w R13, R14
 	jz returnHisto
 	mov.b @R13, R5
 	inc.w R13
-	inc.b R6
 	cmp R12, R5
 	jne histo
 	inc.b R15
 	jmp histo
 returnHisto:
-	clr.b R6
 	ret
 
 
